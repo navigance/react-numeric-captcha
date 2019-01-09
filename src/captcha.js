@@ -7,9 +7,13 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function getRandomChars(chars) {
+  return Math.random().toString(36).substring(chars);
+}
+
 class Captcha extends Component {
   state = {
-    solution: getRandomInt(111111, 999999),
+    solution: getRandomChars(6),
     input: ""
   };
 
@@ -40,7 +44,7 @@ class Captcha extends Component {
   refresh = () => {
     this.setState(
       {
-        solution: getRandomInt(111111, 999999),
+        solution: getRandomChars(6),
         input: ""
       },
       this.drawCaptcha
@@ -117,7 +121,7 @@ class Captcha extends Component {
           </div>
         </div>
         <input
-          type="number"
+          type="text"
           value={input}
           onChange={this.handleChange}
           placeholder={placeholder}
